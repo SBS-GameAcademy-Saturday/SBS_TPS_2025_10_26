@@ -29,7 +29,7 @@ public class IdleState : MonoBehaviour , IState
 
     public void UpdateState()
     {
-        // ÇÃ·¹ÀÌ¾î°¡ Ãß°ÝÇÒ ¼ö ÀÖ´Â ¹üÀ§ ¾È¿¡ ¾ø´ÂÁö È®ÀÎ
+        // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         if (enemyController.IsInVisionRadius())
         {
             enemyController.UpdateState(EState.Chase);

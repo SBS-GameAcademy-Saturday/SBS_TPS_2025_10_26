@@ -13,7 +13,7 @@ public class SoilderEnemyController : MonoBehaviour
     [SerializeField] private ShootState shootState;
     [SerializeField] private ChaseState chaseState;
 
-    // ½Ã¾ß
+    // ï¿½Ã¾ï¿½
     [Header("Vision")]
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float visionRadius = 11f;
@@ -44,7 +44,7 @@ public class SoilderEnemyController : MonoBehaviour
         shootState = GetComponent<ShootState>();
         chaseState = GetComponent<ChaseState>();
 
-        // ½ÃÀÛÇÏÀÚ ¸¶´Ù Patrol »óÅÂ·Î ÀüÈ¯
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Patrol ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         UpdateState(currentState);
         damagable.OnDeath.AddListener(OnDeath);
     }
@@ -60,7 +60,7 @@ public class SoilderEnemyController : MonoBehaviour
 
     public void UpdateState(EState state)
     {
-        // ³»°¡ ¿øÇÏ´Â »óÅÂ·Î ÀüÈ¯
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         switch(state)
         {
             case EState.Idle:
@@ -76,7 +76,7 @@ public class SoilderEnemyController : MonoBehaviour
                 stateContext.Transition(shootState);
                 break;
         }
-        // ÇöÀç »óÅÂ °»½Å
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         currentState = state;
     }
 
@@ -93,6 +93,7 @@ public class SoilderEnemyController : MonoBehaviour
     private void OnDeath()
     {
         animator.SetTrigger("Death");
+        navMeshAgent.isStopped = true;
         _isDeath = true;
         Destroy(gameObject, 2f);
     }
