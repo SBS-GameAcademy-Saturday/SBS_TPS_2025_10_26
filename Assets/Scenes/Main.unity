@@ -6848,8 +6848,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  visionRadius: 11
-  attackRadius: 5
+  initialVisionRadius: 11
+  onHitVisionRadius: 30
+  initialAttackRadius: 5
+  onHitAttackRadius: 15
   damagable: {fileID: 145215745}
   animator: {fileID: 452833996}
   navMeshAgent: {fileID: 145215746}
@@ -12222,8 +12224,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  visionRadius: 11
-  attackRadius: 5
+  initialVisionRadius: 11
+  onHitVisionRadius: 30
+  initialAttackRadius: 5
+  onHitAttackRadius: 15
   damagable: {fileID: 169095707}
   animator: {fileID: 2038734983}
   navMeshAgent: {fileID: 169095708}
@@ -37988,8 +37992,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  visionRadius: 11
-  attackRadius: 5
+  initialVisionRadius: 11
+  onHitVisionRadius: 30
+  initialAttackRadius: 5
+  onHitAttackRadius: 15
   damagable: {fileID: 960489085}
   animator: {fileID: 1244235528}
   navMeshAgent: {fileID: 960489083}
@@ -49755,8 +49761,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  visionRadius: 11
-  attackRadius: 5
+  initialVisionRadius: 11
+  onHitVisionRadius: 30
+  initialAttackRadius: 5
+  onHitAttackRadius: 15
   damagable: {fileID: 1228102551}
   animator: {fileID: 432898094}
   navMeshAgent: {fileID: 1228102552}
@@ -114285,8 +114293,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  visionRadius: 11
-  attackRadius: 5
+  initialVisionRadius: 11
+  onHitVisionRadius: 30
+  initialAttackRadius: 5
+  onHitAttackRadius: 15
   damagable: {fileID: 1947943517}
   animator: {fileID: 338079531}
   navMeshAgent: {fileID: 1947943518}
