@@ -16,10 +16,12 @@ public class SoilderEnemyController : MonoBehaviour
     // �þ�
     [Header("Vision")]
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private float visionRadius = 11f;
+    [SerializeField] private float initialVisionRadius = 11f;
+    [SerializeField] private float onHitVisionRadius = 30f;
 
     [Header("Attack")]
-    [SerializeField] private float attackRadius = 5f;
+    [SerializeField] private float initialAttackRadius = 5f;
+    [SerializeField] private float onHitAttackRadius = 15f;
 
     [Header("Animator")]
     [SerializeField] private Damagable damagable;
@@ -30,6 +32,11 @@ public class SoilderEnemyController : MonoBehaviour
     [SerializeField] private EState currentState = EState.Patrol;
 
     private bool _isDeath = false;
+    private bool _isHited = false;
+
+    private float _visionRadius = 0;
+    private float _attackRadius = 0;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +54,10 @@ public class SoilderEnemyController : MonoBehaviour
         // �������� ���� Patrol ���·� ��ȯ
         UpdateState(currentState);
         damagable.OnDeath.AddListener(OnDeath);
+        damagable.OnHealthChangedEvent.AddListener(OnDamaged);
+
+        _visionRadius = initialVisionRadius;
+        _attackRadius = initialAttackRadius;
     }
 
     // Update is called once per frame
@@ -82,12 +93,12 @@ public class SoilderEnemyController : MonoBehaviour
 
     public bool IsInVisionRadius()
     {
-        return Physics.CheckSphere(transform.position, visionRadius, playerLayer);
+        return Physics.CheckSphere(transform.position, _visionRadius, playerLayer);
     }
 
     public bool IsInAttackRadius()
     {
-        return Physics.CheckSphere(transform.position, attackRadius, playerLayer);
+        return Physics.CheckSphere(transform.position, _attackRadius, playerLayer);
     }
 
     private void OnDeath()
@@ -98,4 +109,21 @@ public class SoilderEnemyController : MonoBehaviour
         Destroy(gameObject, 2f);
     }
 
+    private void OnDamaged(float currentHealth, float maxHealth)
+    {
+        if (_isHited)
+            return;
+        _isHited = true;
+        _visionRadius = onHitVisionRadius;
+        _attackRadius = onHitAttackRadius;
+        UpdateState(EState.Shoot);
+        Invoke("ResetOnHited",5);
+    }
+
+    private void ResetOnHited()
+    {
+        _isHited = false;
+        _visionRadius = initialVisionRadius;
+        _attackRadius = initialAttackRadius;
+    }
 }

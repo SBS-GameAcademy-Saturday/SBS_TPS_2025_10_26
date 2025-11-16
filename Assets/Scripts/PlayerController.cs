@@ -42,6 +42,13 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem muzzleSpark;
 
     [SerializeField] private ParticleSystem impactEffect;
+
+    [Header("Lock Setting")]
+    [SerializeField] private float mouse_Y_Max = 15.0f;
+    [SerializeField] private float mouse_Y_Min = -15.0f;
+    [SerializeField] private Transform thirdPersonCameraTarget;
+    [SerializeField] private float mouse_Y_Axis_Speed = 1.0f;
+
     private Vector2 _movementInput = Vector2.zero;
     private Vector2 _lookInput = Vector2.zero;
     private CharacterController _controller;
@@ -51,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
     private bool _shot = false;
     private float _nextTimeToShot = 0.0f;
+    private float _cameraLookYAxis = 0;
 
     private bool _aimming = false;
 
@@ -59,6 +67,8 @@ public class PlayerController : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -153,6 +163,11 @@ public class PlayerController : MonoBehaviour
     private void Rotate()
     {
         float mouseX = _lookInput.x * Time.fixedDeltaTime * rotateSpeed;
+        float mouseY = _lookInput.y * Time.fixedDeltaTime * mouse_Y_Axis_Speed;
+
+        _cameraLookYAxis -= mouseY;
+        _cameraLookYAxis = Mathf.Clamp(_cameraLookYAxis, mouse_Y_Min, mouse_Y_Max);
+        thirdPersonCameraTarget.localEulerAngles = new Vector3(_cameraLookYAxis, 0, 0);
         transform.Rotate(Vector3.up * mouseX);
     }
 

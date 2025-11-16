@@ -7,6 +7,8 @@ public class MainHud : MonoBehaviour
 
     [SerializeField] private Slider playerHealthBar;
 
+    [SerializeField] private Image crossHair;
+
     void Start()
     {
         playerDamagable.OnHealthChangedEvent.AddListener(OnHealthChanged);
@@ -16,5 +18,10 @@ public class MainHud : MonoBehaviour
     private void OnHealthChanged(float currentHealth, float maxHealth)
     {
         playerHealthBar.value = currentHealth / maxHealth;
+    }
+
+    public void CanCollectiveState(bool state)
+    {
+        crossHair.color = state ? Color.blue : Color.white;
     }
 }

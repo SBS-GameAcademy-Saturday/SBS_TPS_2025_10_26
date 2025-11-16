@@ -6,7 +6,7 @@ public class ChaseState : MonoBehaviour, IState
     [SerializeField] private SoilderEnemyController enemyController;
     [SerializeField] private Transform target;
     [SerializeField] private NavMeshAgent navMeshAgent;
-
+    [SerializeField] private float chaseSpeed = 3.5f;
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -16,7 +16,7 @@ public class ChaseState : MonoBehaviour, IState
 
     public void EnterState()
     {
-
+        navMeshAgent.speed = chaseSpeed;
     }
 
     public void ExitState()

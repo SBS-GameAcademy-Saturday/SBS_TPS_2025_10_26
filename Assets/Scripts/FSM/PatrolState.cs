@@ -10,6 +10,7 @@ public class PatrolState : MonoBehaviour, IState
     // 도착 여부를 판단할 변수
     [SerializeField] private float arriveDistance = 0.3f;
 
+    [SerializeField] private float partolSpeed = 2.0f;
 
     private int currentWayPointIndex = 0;
 
@@ -21,7 +22,7 @@ public class PatrolState : MonoBehaviour, IState
 
     public void EnterState()
     {
-
+        navMeshAgent.speed = partolSpeed;
     }
 
     public void ExitState()
